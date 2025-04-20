@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <h1>TaskMaster</h1>
+  <h2>Tasks</h2>
+  <div id="app">
+    <form v-on:submit.prevent="">
+      <input type="text" v-model="newItem">
+      <button v-on:click="addItem">New Task</button>
+    </form>
+    <ul>
+      <li v-for="(task, index) in tasks">
+        <input type="checkbox" v-model="task.isDone"> <!-- checkboxなのでboolean-->
+        <!-- 付与するCSSクラス名: 条件-->
+        <span v-bind:class="{ done: task.isDone }">{{ task.item }}</span>
+        <input type="date" v-model="task.deadLine">
+      </li>
+    </ul>
+
+    <h2>Done</h2>
+    <ul>
+      
+    </ul>
+
+
+    <pre>{{ $data }}</pre> <!-- デバッグ用 -->
+  </div>
+
+  <script src="https://unpkg.com/vue@3.1.5"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
