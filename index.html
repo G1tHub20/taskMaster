@@ -15,17 +15,20 @@
       <button v-on:click="addItem">New Task</button>
     </form>
     <ul>
-      <li v-for="(task, index) in tasks">
+      <li v-for="(task, index) in incompleteTasks" :key="task.id">
         <input type="checkbox" v-model="task.isDone"> <!-- checkboxなのでboolean-->
-        <!-- 付与するCSSクラス名: 条件-->
-        <span v-bind:class="{ done: task.isDone }">{{ task.item }}</span>
+        <span v-bind:class="{ done: task.isDone }">{{ task.item }}</span> <!-- 付与するCSSクラス名: 条件-->
         <input type="date" v-model="task.deadLine">
       </li>
     </ul>
 
     <h2>Done</h2>
     <ul>
-      
+      <li v-for="(task, index) in completeTasks" :key="task.id">
+        <input type="checkbox" v-model="task.isDone"> <!-- checkboxなのでboolean-->
+        <span v-bind:class="{ done: task.isDone }">{{ task.item }}</span> <!-- 付与するCSSクラス名: 条件-->
+        <input type="date" v-model="task.deadLine">
+      </li>
     </ul>
 
 
