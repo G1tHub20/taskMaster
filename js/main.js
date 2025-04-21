@@ -5,6 +5,15 @@ const app = Vue.createApp({
     newItem: '',
     tasks: []
   }),
+  watch: {
+    tasks: { // tasksの変更を監視してhandler内の関数を実行
+      handler(newTasks) {
+        // console.log('watch発火')
+        localStorage.setItem('tasks', JSON.stringify(newTasks))
+      },
+      deep: true //tasksの中のオブジェクトの変更も検知
+    }
+  },
   // 算出プロパティ（処理した結果を返す）
   computed: {
     incompleteTasks() {
@@ -26,7 +35,15 @@ const app = Vue.createApp({
       }
       // tasks配列に追加
       this.tasks.push(task)
+      // localStorage.setItem('tasks',JSON.stringify(this.tasks))
       this.newItem = ''
+    }
+  },
+  // インスタンス生成直後に実行
+  created() {
+    const storedTasks = localStorage.getItem('tasks')
+    if (storedTasks) {
+      this.tasks = JSON.parse(storedTasks)
     }
   }
 })
