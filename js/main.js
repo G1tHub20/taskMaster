@@ -37,6 +37,10 @@ const app = Vue.createApp({
       this.tasks.push(task)
       // localStorage.setItem('tasks',JSON.stringify(this.tasks))
       this.newItem = ''
+    },
+    deleteItem: function(index) {
+      console.log(index);
+      this.tasks.splice(index, 1)
     }
   },
   // インスタンス生成直後に実行
@@ -45,7 +49,7 @@ const app = Vue.createApp({
     if (storedTasks) {
       this.tasks = JSON.parse(storedTasks)
     }
-  }
+  },
 })
 
 app.mount('#app')

@@ -19,6 +19,7 @@
         <input type="checkbox" v-model="task.isDone"> <!-- checkboxなのでboolean-->
         <span v-bind:class="{ done: task.isDone }">{{ task.item }}</span> <!-- 付与するCSSクラス名: 条件-->
         <input type="date" v-model="task.deadLine">
+        <button v-on:click="deleteItem(index)">削除</button>
       </li>
     </ul>
 
@@ -30,7 +31,6 @@
         <input type="date" v-model="task.deadLine">
       </li>
     </ul>
-
 
     <pre>{{ $data }}</pre> <!-- デバッグ用 -->
   </div>
